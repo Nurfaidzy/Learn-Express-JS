@@ -1,11 +1,19 @@
-const user = require('../Model/User');
+const UserServices = require('../Services/UserServices');
 
 async function getUsers(req, res) {
   try {
-    const response = await user.findAll({ attributes: ['username', 'email'] });
-    res.json(response);
+    const data = await UserServices.getUsers();
+    return res.status(200).json({
+      status: 'Success',
+      message: 'Get All User Successfully',
+      data,
+    });
   } catch (error) {
-    res.send(error);
+    return res.status(500).json({
+      status: 'Error',
+      message: 'Internal server error',
+      data: error.message,
+    });
   }
 }
 
