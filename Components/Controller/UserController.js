@@ -1,4 +1,18 @@
+const jwt = require('jsonwebtoken');
 const UserServices = require('../Services/UserServices');
+
+const secret = process.env.SECRET_KEY;
+
+function authenticate(req, res, next) {
+  const token = req.headers.authorization;
+  try {
+    const decoded = jwt.verify(token, secret);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: 'Invalid token' });
+  }
+}
 
 async function getUsers(req, res) {
   try {
@@ -18,5 +32,5 @@ async function getUsers(req, res) {
 }
 
 module.exports = {
-  getUsers,
+  getUsers, authenticate,
 };
