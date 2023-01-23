@@ -19,6 +19,6 @@ const User = config.define('users', {
 }, {
   tableName: 'users',
 });
-User.belongsTo(Access, { foreignKey: 'access', targetKey: 'id', as: 'accessRole' });
+User.belongsTo(Access, { foreignKey: 'access_id', targetKey: 'id', as: 'accessRole' });
 
 module.exports = User;
