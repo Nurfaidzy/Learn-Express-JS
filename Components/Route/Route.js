@@ -1,12 +1,14 @@
 const UserController = require('../Controller/UserController');
 const Login = require('../Auth/Login');
+const SignUp = require('../Auth/SignUp');
 const Middleware = require('../Middleware/Authenticate');
 
 function startServer(app, port) {
-  // app.get('/user', (req, res) => UserController.getUsers(req, res));
-  app.get('/users', Middleware.authenticate, UserController.getUsers);
-
+  // user signup
+  app.post('/signup', SignUp.signUp);
   app.post('/login', Login.login);
+
+  app.get('/users', Middleware.authenticate, UserController.getUsers);
 
   // Listeing Port
   app.listen(port, () => {
