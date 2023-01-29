@@ -3,7 +3,7 @@ const UserServices = require('../Services/UserServices');
 
 const saltRounds = 10;
 
-async function signUp(req, res) {
+module.exports.signUp = async (req, res) => {
   const values = req.body;
   const inputNewUser = async () => {
     try {
@@ -55,8 +55,4 @@ async function signUp(req, res) {
       data: error.message,
     });
   }
-}
-
-module.exports = {
-  signUp,
 };

@@ -1,6 +1,6 @@
 const UserServices = require('../Services/UserServices');
 
-async function getUsers(req, res) {
+module.exports.getUsers = async (req, res) => {
   try {
     const data = await UserServices.getUsers();
     return res.status(200).json({
@@ -15,8 +15,4 @@ async function getUsers(req, res) {
       data: error.message,
     });
   }
-}
-
-module.exports = {
-  getUsers,
 };
