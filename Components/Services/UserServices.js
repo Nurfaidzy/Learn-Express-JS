@@ -9,6 +9,6 @@ module.exports.newUser = (payload) => user.create({
   access_id: payload.access_id,
 });
 
-module.exports.findEmailareSame = (payload) => user.findAll({
+module.exports.findEmailareSame = (payload) => user.findOne({
   where: payload,
 });
