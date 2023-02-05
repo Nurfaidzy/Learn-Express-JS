@@ -23,7 +23,10 @@ module.exports.login = async (req, res) => {
     const user = { id: findUser.id, email: findUser.email };
     const token = jwt.sign(user, secret, { expiresIn: '1h' });
 
-    return res.json({ token });
+    return res.status(200).json({
+      message: 'success',
+      token,
+    });
   } catch (error) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
